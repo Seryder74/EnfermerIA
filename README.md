@@ -1,0 +1,2 @@
+# EnfermerIA
+proyecto de nora
