@@ -1,0 +1,9 @@
+para ejecutar el servidor
+    Set-ExecutionPolicy Unrestricted -Scope Process     //activa los permisos
+    venv\Scripts\activate
+    C:\repo\proyecto_enfermerIA\backend>                //asegurarse de estar en esta carpeta antes de activar el unicorn
+    uvicorn app.main:app --reload
+
+navegador
+    http://127.0.0.1:8000/docs
+
