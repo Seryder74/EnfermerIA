@@ -6,14 +6,15 @@ import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Link } from 'expo-router';
-import AI from './imagen/AI.png';
 
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#efefef', dark: '#af0a10' }}
       headerImage={
-        <img src={AI}></img>
+        <Image source={require('./imagen/AI.png')}
+          style={styles.reactLogo}
+        />
       }>
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Welcome!</ThemedText>

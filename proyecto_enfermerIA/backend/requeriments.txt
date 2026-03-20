@@ -7,3 +7,7 @@ para ejecutar el servidor
 navegador
     http://127.0.0.1:8000/docs
 
+encender react
+    repo / proyecto_enfermerIA / EnfermerIAApp
+    npm start
+    http://localhost:8081
