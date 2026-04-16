@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 Recomendaciones detalladas por nivel de gravedad y tipo de emergencia detectada.
 """
@@ -263,3 +264,15 @@ def obtener_recomendacion(nivel: str, sintomas) -> dict:
         "pasos": rec["pasos"],
         "advertencia": rec["advertencia"]
     }
+=======
+def obtener_recomendacion(nivel):
+
+    recomendaciones = {
+        "CRÍTICO": "Llame inmediatamente al 911 e inicie maniobras básicas si sabe realizarlas.",
+        "URGENTE": "Busque atención médica lo antes posible.",
+        "MODERADO": "Aplicar primeros auxilios básicos y observar evolución.",
+        "LEVE": "Mantener en observación."
+    }
+
+    return recomendaciones.get(nivel)
+>>>>>>> cd89b184339915b6ebbd1300adb8913199a11a6c

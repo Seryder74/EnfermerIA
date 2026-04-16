@@ -7,6 +7,7 @@ para ejecutar el servidor
 navegador
     http://127.0.0.1:8000/docs
 
+<<<<<<< HEAD
 encender react
     repo / proyecto_enfermerIA / EnfermerIAApp
     npm start
@@ -17,3 +18,5 @@ encender react
 
 ----- dependencias -----
 psycopg[binary]
+=======
+>>>>>>> cd89b184339915b6ebbd1300adb8913199a11a6c

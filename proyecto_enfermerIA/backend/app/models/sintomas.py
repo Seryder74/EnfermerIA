@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from pydantic import BaseModel
 
 class Sintomas(BaseModel):
@@ -36,3 +37,13 @@ class Sintomas(BaseModel):
     # --- General ---
     edad_mayor_60: bool            # ¿Tiene más de 60 años?
     embarazada: bool               # ¿Está embarazada?
+=======
+class Sintomas:
+    def __init__(self, respira: bool, consciente: bool, sangrado: bool,
+                convulsion: bool, quemadura_grave: bool):
+        self.respira = respira
+        self.consciente = consciente
+        self.sangrado = sangrado
+        self.convulsion = convulsion
+        self.quemadura_grave = quemadura_grave
+>>>>>>> cd89b184339915b6ebbd1300adb8913199a11a6c
