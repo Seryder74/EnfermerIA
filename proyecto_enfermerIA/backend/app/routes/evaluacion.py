@@ -7,6 +7,9 @@ from app.models.evaluacion_model import Evaluacion
 
 router = APIRouter()
 
+# Instanciamos el extractor puro sin llamadas web
+nlp_extractor = ExtractorNLPLocal()
+
 @router.post("/evaluar")
 def evaluar(sintomas: Sintomas):
 
