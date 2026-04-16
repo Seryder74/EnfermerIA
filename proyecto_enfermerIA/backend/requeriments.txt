@@ -11,3 +11,9 @@ encender react
     repo / proyecto_enfermerIA / EnfermerIAApp
     npm start
     http://localhost:8081
+
+
+
+
+----- dependencias -----
+psycopg[binary]

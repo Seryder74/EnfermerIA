@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from app.models.sintomas import Sintomas
-from app.inference.motor import motor_inferencia
+from app.inference.motor import predecir_nivel
 from app.recommendations.recomendaciones import obtener_recomendacion
 from app.database import SessionLocal
 from app.models.evaluacion_model import Evaluacion
@@ -8,36 +8,45 @@ from app.models.evaluacion_model import Evaluacion
 router = APIRouter()
 
 @router.post("/evaluar")
-def evaluar(data: dict):
+def evaluar(sintomas: Sintomas):
 
-    sintomas = Sintomas(
-        respira=data["respira"],
-        consciente=data["consciente"],
-        sangrado=data["sangrado"],
-        convulsion=data["convulsion"],
-        quemadura_grave=data["quemadura_grave"]
-    )
+    # Motor ML predice nivel y probabilidades
+    nivel, probabilidades = predecir_nivel(sintomas)
 
-    nivel = motor_inferencia(sintomas)
-    recomendacion = obtener_recomendacion(nivel)
+    # Recomendaciones detalladas según nivel y categoría
+    recomendacion = obtener_recomendacion(nivel, sintomas)
 
-# Guardar en base de datos
+    # Guardar en base de datos
     db = SessionLocal()
-
     nueva_eval = Evaluacion(
-        respira=data["respira"],
-        consciente=data["consciente"],
-        sangrado=data["sangrado"],
-        convulsion=data["convulsion"],
-        quemadura_grave=data["quemadura_grave"],
+        respira=sintomas.respira,
+        consciente=sintomas.consciente,
+        confusion=sintomas.confusion,
+        dolor_pecho=sintomas.dolor_pecho,
+        pulso_debil=sintomas.pulso_debil,
+        convulsion=sintomas.convulsion,
+        paralisis_facial=sintomas.paralisis_facial,
+        dificultad_respirar=sintomas.dificultad_respirar,
+        labios_azules=sintomas.labios_azules,
+        sangrado=sintomas.sangrado,
+        sangrado_incontrolable=sintomas.sangrado_incontrolable,
+        fractura_sospecha=sintomas.fractura_sospecha,
+        quemadura=sintomas.quemadura,
+        quemadura_extensa=sintomas.quemadura_extensa,
+        quemadura_cara_cuello=sintomas.quemadura_cara_cuello,
+        ingestion_sustancia=sintomas.ingestion_sustancia,
+        vomito_sangre=sintomas.vomito_sangre,
+        perdida_vision=sintomas.perdida_vision,
+        edad_mayor_60=sintomas.edad_mayor_60,
+        embarazada=sintomas.embarazada,
         nivel=nivel
     )
-
     db.add(nueva_eval)
     db.commit()
     db.close()
-    
+
     return {
         "nivel": nivel,
+        "probabilidades": {k: round(v, 3) for k, v in probabilidades.items()},
         "recomendacion": recomendacion
     }
