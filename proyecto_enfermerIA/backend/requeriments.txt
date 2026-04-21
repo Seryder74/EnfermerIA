@@ -18,5 +18,6 @@ encender react
 
 ----- dependencias -----
 psycopg[binary]
+pip install scikit-learn
 =======
 >>>>>>> cd89b184339915b6ebbd1300adb8913199a11a6c
